@@ -46,51 +46,55 @@ const ContactItem = ({ contact, setCloseForm }) => {
   if (!contact) return null;
 
   return (
-    <li className="py-4 flex items-center justify-between hover:bg-gray-50 transition-colors">
-      <div className="flex items-center text-xs md:text-sm gap-4 w-full">
+    <li className="group p-4 rounded-lg shadow-sm bg-white hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-100">
+      <div className="flex items-center gap-4 w-full">
         <input
           type="checkbox"
           checked={isSelected}
           onChange={handleSelect}
-          className="h-4 w-4 text-blue-600 rounded cursor-pointer"
+          className="h-5 w-5 text-blue-600 rounded cursor-pointer border-gray-300 focus:ring-blue-500"
         />
 
-        <div className="flex flex-col md:flex-row md:items-center md:gap-10 w-full">
-          <h3 className=" text-sm font-medium flex items-center gap-2">
-            <FaUser size={15} className="text-gray-500" />
-            <span>
-              {contact.firstName || "بدون نام"} {contact.lastName || ""}
-            </span>
-          </h3>
+        <div className="flex-1">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-medium flex items-center gap-2">
+              <FaUser size={16} className="text-blue-500" />
+              <span className="text-gray-700">
+                {contact.firstName || "بدون نام"} {contact.lastName || ""}
+              </span>
+            </h3>
+            
+            <div className="flex gap-3">
+              <button
+                onClick={handleEdit}
+                className="text-blue-500 hover:text-blue-700 p-1.5 rounded-lg hover:bg-blue-50 transition-colors"
+                aria-label="ویرایش مخاطب"
+              >
+                <CiEdit size={20} />
+              </button>
 
-          <p className="text-gray-600 text-xs flex gap-2 items-center mt-1 md:mt-0">
-            <AiOutlineMail className="text-gray-500" />
-            {contact.email || "بدون ایمیل"}
-          </p>
+              <button
+                onClick={handleDelete}
+                className="text-red-500 hover:text-red-700 p-1.5 rounded-lg hover:bg-red-50 transition-colors"
+                aria-label="حذف مخاطب"
+              >
+                <BsTrash size={18} />
+              </button>
+            </div>
+          </div>
 
-          <p className="text-gray-500 text-xs flex gap-2 items-center mt-1 md:mt-0">
-            <FaPhoneAlt className="text-gray-500" />
-            {contact.phone || "بدون تلفن"}
-          </p>
+          <div className="mt-2 space-y-1">
+            <p className="text-sm text-gray-600 flex gap-2 items-center">
+              <AiOutlineMail className="text-gray-400" />
+              {contact.email || "بدون ایمیل"}
+            </p>
+
+            <p className="text-sm text-gray-600 flex gap-2 items-center">
+              <FaPhoneAlt className="text-gray-400" />
+              {contact.phone || "بدون تلفن"}
+            </p>
+          </div>
         </div>
-      </div>
-
-      <div className="flex justify-start gap-4 ">
-        <button
-          onClick={handleEdit}
-          className="text-blue-600 hover:text-blue-800 p-1 rounded-full hover:bg-blue-50 transition-colors"
-          aria-label="ویرایش مخاطب"
-        >
-          <CiEdit size={20} />
-        </button>
-
-        <button
-          onClick={handleDelete}
-          className="text-red-600 hover:text-red-800 p-1 rounded-full hover:bg-red-50 transition-colors"
-          aria-label="حذف مخاطب"
-        >
-          <BsTrash size={18} />
-        </button>
       </div>
     </li>
   );
