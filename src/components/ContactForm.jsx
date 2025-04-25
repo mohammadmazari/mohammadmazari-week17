@@ -95,111 +95,115 @@ const ContactForm = ({ closeForm, setCloseForm }) => {
       </button>
       <form
         onSubmit={handleSubmit}
-        className={`mt-3 transition-all duration-300 bg-white/50 pt-4 pb-2 rounded-xl overflow-hidden ${
-          closeForm ? "max-h-0" : "max-h-screen"
+        className={`mt-3 transition-all duration-500 ease-in-out bg-white/50 rounded-xl overflow-hidden ${
+          closeForm ? "max-h-0 opacity-0" : "max-h-[800px] opacity-100"
         }`}
       >
-        <div className="mb-4">
-          <label
-            className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
-            htmlFor="firstName"
-          >
-            نام:
-          </label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            className={`w-full text-sm md:text-md p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all ${
-              errors.firstName
-                ? "border-red-500 focus:ring-red-200"
-                : "border-gray-300"
-            }`}
-          />
-          {errors.firstName && (
-            <p className="text-red-500 text-xs mt-1.5">{errors.firstName}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
-            htmlFor="lastName"
-          >
-            نام خانوادگی:
-          </label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            className={`w-full text-sm md:text-md p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all ${
-              errors.lastName
-                ? "border-red-500 focus:ring-red-200"
-                : "border-gray-300"
-            }`}
-          />
-          {errors.lastName && (
-            <p className="text-red-500 text-xs mt-1.5">{errors.lastName}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
-            htmlFor="email"
-          >
-            ایمیل:
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className={`w-full text-sm md:text-md p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all ${
-              errors.email
-                ? "border-red-500 focus:ring-red-200"
-                : "border-gray-300"
-            }`}
-          />
-          {errors.email && (
-            <p className="text-red-500 text-xs mt-1.5">{errors.email}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
-            htmlFor="phone"
-          >
-            تلفن:
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className="w-full text-sm md:text-md p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all"
-          />
-        </div>
-        <div className="flex justify-between px-3 gap-2">
-          {state.currentContact && (
-            <button
-              type="button"
-              onClick={handleCancel}
-              className="px-4 mb-4 text-sm text-white bg-gradient-to-r from-red-500 to-red-600 rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2 py-2.5"
+        <div className={`p-4 transition-opacity duration-500 ${
+          closeForm ? "opacity-0" : "opacity-100"
+        }`}>
+          <div className="mb-4">
+            <label
+              className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
+              htmlFor="firstName"
             >
-              انصراف
+              نام:
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              className={`w-full text-sm md:text-md p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all ${
+                errors.firstName
+                  ? "border-red-500 focus:ring-red-200"
+                  : "border-gray-300"
+              }`}
+            />
+            {errors.firstName && (
+              <p className="text-red-500 text-xs mt-1.5">{errors.firstName}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
+              htmlFor="lastName"
+            >
+              نام خانوادگی:
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              className={`w-full text-sm md:text-md p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all ${
+                errors.lastName
+                  ? "border-red-500 focus:ring-red-200"
+                  : "border-gray-300"
+              }`}
+            />
+            {errors.lastName && (
+              <p className="text-red-500 text-xs mt-1.5">{errors.lastName}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
+              htmlFor="email"
+            >
+              ایمیل:
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className={`w-full text-sm md:text-md p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all ${
+                errors.email
+                  ? "border-red-500 focus:ring-red-200"
+                  : "border-gray-300"
+              }`}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-xs mt-1.5">{errors.email}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
+              htmlFor="phone"
+            >
+              تلفن:
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full text-sm md:text-md p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all"
+            />
+          </div>
+          <div className="flex justify-between px-3 gap-2">
+            {state.currentContact && (
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="px-4 mb-4 text-sm text-white bg-gradient-to-r from-red-500 to-red-600 rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2 py-2.5"
+              >
+                انصراف
+              </button>
+            )}
+            <button
+              type="submit"
+              className="px-4 py-2.5 mb-4 text-sm md:text-md bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
+            >
+              {state.currentContact ? "ذخیره تغییرات" : "افزودن مخاطب"}
             </button>
-          )}
-          <button
-            type="submit"
-            className="px-4 py-2.5 mb-4 text-sm md:text-md bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
-          >
-            {state.currentContact ? "ذخیره تغییرات" : "افزودن مخاطب"}
-          </button>
+          </div>
         </div>
       </form>
     </div>
