@@ -2,15 +2,15 @@
 
 @font-face {
   font-family: dana;
-  src: url("./assets/Font/DanaFaNum-Medium.woff2") format(".woff2"),
-    url("./assets//Font/DanaFaNum-Medium.ttf") format("ttf");
+  src: url("./assets/Font/DanaFaNum-Medium.ttf") format("ttf"),
+    url("./assets//Font/DanaFaNum-Medium.woff") format("woff");
   font-style: normal;
   font-weight: 500;
 }
 @font-face {
   font-family: dana;
-  src: url("./assets/Font/DanaFaNum-Regular.woff2") format(".woff2"),
-    url("./assets/Font/DanaFaNum-Regular.ttf") format("ttf");
+  src: url("./assets/Font/DanaFaNum-Regular.ttf") format("ttf"),
+    url("./assets/Font/DanaFaNum-Regular.woff") format("woff");
   font-style: normal;
   font-weight: 400;
 }
