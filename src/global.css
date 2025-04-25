@@ -2,13 +2,15 @@
 
 @font-face {
   font-family: dana;
-  src: url("./assets/Font/DanaFaNum-Medium.woff2") format(".woff2");
+  src: url("./assets/Font/DanaFaNum-Medium.woff2") format(".woff2"),
+    url("./assets//Font/DanaFaNum-Medium.ttf") format("ttf");
   font-style: normal;
   font-weight: 500;
 }
 @font-face {
   font-family: dana;
-  src: url("./assets/Font/DanaFaNum-Regular.woff2") format(".woff2");
+  src: url("./assets/Font/DanaFaNum-Regular.woff2") format(".woff2"),
+    url("./assets/Font/DanaFaNum-Regular.ttf") format("ttf");
   font-style: normal;
   font-weight: 400;
 }
@@ -16,7 +18,6 @@
 body {
   background-color: aliceblue;
   font-family: dana;
-  font-optical-sizing: auto;
   direction: rtl;
   color: rgb(51, 50, 50);
 }
