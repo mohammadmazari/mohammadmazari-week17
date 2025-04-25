@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+body {
+  background-color: aliceblue;
+  font-family: "dana";
+  font-optical-sizing: auto;
+  direction: rtl;
+  color: rgb(51, 50, 50);
+}
+
+@font-face {
+  font-family: dana;
+  src: url("./assets/Font/DanaFaNum-Medium.woff2") format(".woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: dana;
+  src: url("./assets/Font/DanaFaNum-Regular.woff2") format(".woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+button {
+  cursor: pointer;
+}
+input:focus {
+  border: 1px solid gray;
+  outline: none;
+}
+input {
+  color: rgb(50, 49, 49);
+}
