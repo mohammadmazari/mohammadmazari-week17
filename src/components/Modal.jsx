@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useContacts } from "../context/ContactContext";
 import { FaRegTrashCan } from "react-icons/fa6";
 const Modal = () => {
   const { state, dispatch } = useContacts();
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        state.modalContent.onCancel();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [state.modalContent]);
 
   if (!state.isModalOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-400/60  flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 max-w-md w-full">
-        <h3 className="text-xl flex justify-between items-center  mb-4">
+    <div className="fixed inset-0 bg-gray-400/60 flex items-center justify-center z-50">
+      <div
+        ref={modalRef}
+        className="bg-white rounded-lg p-6 max-w-md w-full mx-[13px]"
+      >
+        <h3 className="text-xl flex justify-between items-center mb-4">
           <span>{state.modalContent.title}</span>
-          <span>{state.modalContent.icone === "remove" && <FaRegTrashCan color="red"/>}</span>
+          <span>
+            {state.modalContent.icone === "remove" && (
+              <FaRegTrashCan color="red" />
+            )}
+          </span>
         </h3>
         <p className="mb-6">{state.modalContent.message}</p>
         <div className="flex justify-between gap-2">
