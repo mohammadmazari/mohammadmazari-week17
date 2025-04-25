@@ -1,17 +1,20 @@
-import React from 'react';
-import { useContacts } from '../context/ContactContext';
-
+import React from "react";
+import { useContacts } from "../context/ContactContext";
+import { FaRegTrashCan } from "react-icons/fa6";
 const Modal = () => {
   const { state, dispatch } = useContacts();
 
   if (!state.isModalOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-400  flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-gray-400/60  flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 max-w-md w-full">
-        <h3 className="text-xl font-semibold mb-4">{state.modalContent.title}</h3>
+        <h3 className="text-xl flex justify-between items-center  mb-4">
+          <span>{state.modalContent.title}</span>
+          <span>{state.modalContent.icone === "remove" && <FaRegTrashCan color="red"/>}</span>
+        </h3>
         <p className="mb-6">{state.modalContent.message}</p>
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-between gap-2">
           <button
             onClick={state.modalContent.onCancel}
             className="px-4 py-2 text-gray-700 border border-gray-300 rounded hover:bg-gray-100"

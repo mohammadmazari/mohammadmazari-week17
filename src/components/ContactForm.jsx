@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useContacts } from "../context/ContactContext";
-
-const ContactForm = () => {
+import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import { CiEdit } from "react-icons/ci";
+const ContactForm = ({ closeForm, setCloseForm }) => {
   const { state, dispatch } = useContacts();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -59,9 +60,9 @@ const ContactForm = () => {
 
     setFormData({
       firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
+    lastName: "",
+    email: "",
+    phone: "",
     });
     dispatch({ type: "SET_CURRENT_CONTACT", payload: null });
     setErrors({});
@@ -79,14 +80,28 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="rounded-lg shadow bg-white p-4 ">
-      <h2 className="text-lg text-center font-[400] mb-4">
-        {state.currentContact ? "ویرایش مخاطب" : "افزودن مخاطب جدید"}
-      </h2>
-      <form onSubmit={handleSubmit} className="mt-3 bg-white pt-2 rounded-2xl ">
+    <div className="rounded-lg shadow-lg bg-gradient-to-br from-white to-blue-50 px-6 pt-6 pb-4 border border-blue-100">
+      <button
+        onClick={() => setCloseForm((s) => !s)}
+        className="text-center w-full mb-4 text-sm flex justify-between items-center p-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-all duration-300 shadow-sm hover:shadow-md"
+      >
+        <span className="flex gap-2 items-center text-blue-700">
+          {state.currentContact ? "ویرایش مخاطب" : "افزودن مخاطب جدید"}
+          <CiEdit size={15} className="text-blue-500" />
+        </span>
+        <span className="text-blue-500">
+          {closeForm ? <FaChevronDown /> : <FaChevronUp />}
+        </span>
+      </button>
+      <form
+        onSubmit={handleSubmit}
+        className={`mt-3 transition-all duration-300 bg-white/50 pt-4 pb-2 rounded-xl overflow-hidden ${
+          closeForm ? "max-h-0" : "max-h-screen"
+        }`}
+      >
         <div className="mb-4">
           <label
-            className="block text-sm md:text-lg text-gray-700 mb-2"
+            className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
             htmlFor="firstName"
           >
             نام:
@@ -97,17 +112,19 @@ const ContactForm = () => {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            className={`w-full text-sm md:text-lg p-2 border rounded ${
-              errors.firstName ? "border-red-500" : "border-gray-300"
+            className={`w-full text-sm md:text-md p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all ${
+              errors.firstName
+                ? "border-red-500 focus:ring-red-200"
+                : "border-gray-300"
             }`}
           />
           {errors.firstName && (
-            <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+            <p className="text-red-500 text-xs mt-1.5">{errors.firstName}</p>
           )}
         </div>
         <div className="mb-4">
           <label
-            className="block text-sm md:text-lg text-gray-700 mb-2"
+            className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
             htmlFor="lastName"
           >
             نام خانوادگی:
@@ -118,17 +135,19 @@ const ContactForm = () => {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            className={`w-full text-sm md:text-lg p-2 border rounded ${
-              errors.lastName ? "border-red-500" : "border-gray-300"
+            className={`w-full text-sm md:text-md p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all ${
+              errors.lastName
+                ? "border-red-500 focus:ring-red-200"
+                : "border-gray-300"
             }`}
           />
           {errors.lastName && (
-            <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+            <p className="text-red-500 text-xs mt-1.5">{errors.lastName}</p>
           )}
         </div>
         <div className="mb-4">
           <label
-            className="block text-sm md:text-lg text-gray-700 mb-2"
+            className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
             htmlFor="email"
           >
             ایمیل:
@@ -139,17 +158,19 @@ const ContactForm = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={`w-full text-sm md:text-lg p-2 border rounded ${
-              errors.email ? "border-red-500" : "border-gray-300"
+            className={`w-full text-sm md:text-md p-2.5 border rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all ${
+              errors.email
+                ? "border-red-500 focus:ring-red-200"
+                : "border-gray-300"
             }`}
           />
           {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            <p className="text-red-500 text-xs mt-1.5">{errors.email}</p>
           )}
         </div>
         <div className="mb-4">
           <label
-            className="block text-sm md:text-lg text-gray-700 mb-2"
+            className="block text-sm md:text-md text-gray-700 mb-2 font-medium"
             htmlFor="phone"
           >
             تلفن:
@@ -160,22 +181,22 @@ const ContactForm = () => {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full text-sm md:text-lg p-2 border border-gray-300 rounded"
+            className="w-full text-sm md:text-md p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-all"
           />
         </div>
-        <div className="flex justify-between px-3  gap-2">
+        <div className="flex justify-between px-3 gap-2">
           {state.currentContact && (
             <button
               type="button"
               onClick={handleCancel}
-              className="px-4 py-2 text-sm md:text-lg text-gray-700 border border-gray-300 rounded hover:bg-gray-100"
+              className="px-4 mb-4 text-sm text-white bg-gradient-to-r from-red-500 to-red-600 rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2 py-2.5"
             >
               انصراف
             </button>
           )}
           <button
             type="submit"
-            className="px-4 py-2 text-sm md:text-lg bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="px-4 py-2.5 mb-4 text-sm md:text-md bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
           >
             {state.currentContact ? "ذخیره تغییرات" : "افزودن مخاطب"}
           </button>

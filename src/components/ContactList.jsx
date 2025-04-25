@@ -1,8 +1,9 @@
 import React from "react";
 import { useContacts } from "../context/ContactContext";
 import ContactItem from "./ContactItem";
+import { CgMenuGridO } from "react-icons/cg";
 
-const ContactList = () => {
+const ContactList = ({ setCloseForm }) => {
   const { state, dispatch } = useContacts();
   const filteredContacts = (state.contacts || []).filter((contact) => {
     if (!contact) return false;
@@ -33,12 +34,12 @@ const ContactList = () => {
 
   return (
     <div className="bg-white rounded-lg shadow p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-medium">لیست مخاطبین</h2>
+      <div className="flex  justify-between items-center mb-4">
+        <CgMenuGridO />
         {state.selectedContacts?.length > 0 && (
           <button
             onClick={handleDeleteSelected}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+            className="bg-gradient-to-r from-red-500 to-red-600 text-sm text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2"
             aria-label="حذف مخاطبین انتخاب شده"
           >
             حذف انتخاب شده‌ها ({state.selectedContacts.length})
@@ -60,6 +61,7 @@ const ContactList = () => {
               contact={contact}
               dispatch={dispatch}
               isSelected={state.selectedContacts?.includes(contact.id)}
+              setCloseForm={setCloseForm}
             />
           ))}
         </ul>
